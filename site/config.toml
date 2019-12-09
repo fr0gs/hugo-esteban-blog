@@ -1,7 +1,7 @@
 baseurl = "/"
 languageCode = "en-us"
 languageLang = "en"
-title = "Thoughts and ramblings"
+title = "Esteban Sastre"
 theme = "hugo-ink"
 
 # RSS, categories and tags disabled for an easy start
@@ -11,7 +11,6 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
 
 paginate = 5
 
-
 pygmentsstyle = "vs"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
@@ -20,10 +19,10 @@ googleAnalytics = "UA-123-45"
 disqusShortname = "ink-demo"
 
 [params]
-	subtitle = "Crisp, minimal personal [blog theme for Hugo](https://github.com/knadh/hugo-ink)"
+	subtitle = "Pretty much everything that crosses my mind, thoughts and ramblings"
 
 	# Optional 64x64 avatar image.
-	avatar = "https://image.freepik.com/free-vector/young-man-head-with-beard-avatar-character_24877-36786.jpg"
+	avatar = "myself.jpg"
 
 	# Content types to disable Disqus on.
 	disableDisqusTypes = ["page"]
@@ -59,7 +58,7 @@ weight = 4
 [[params.social]]
 name = "Github"
 icon = "github"
-url = "https://github.com/knadh/ink"
+url = "https://github.com/fr0gs/"
 
 [[params.social]]
 name = "RSS"
