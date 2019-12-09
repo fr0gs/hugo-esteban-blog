@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["npm", "node", "nodejs", "javascript"]
-date = 0001-01-01T00:00:00Z
+date = 2017-06-25T19:48:15Z
 description = "What are the differences between dependencies, devDependencies, peerDependencies, bundledDependencies and optionalDependencies in npm projects? You got it!"
 draft = false
 slug = "types-of-dependencies-in-npm"
@@ -36,7 +36,7 @@ Dependencies are expressed in a hash with a pair of
 }
 ```
 
-per each of them. The version range can be a **string** indicating the version range to fetch from the central repository, a **tarball** or a **git url** pointing to a specific tags or commit.
+per each of them. The version range can be a **string** indicating the version range to fetch from the central repository, a **tarball** or a **git url** pointing to a specific tag or commit.
 
 There are different ways inside the *package.json* file to indicate the nature of the dependencies: **dependencies**, **devDependencies** and **peerDependencies**.
 You can also find **bundledDependencies** and **optionalDependencies**, but I do not see them used that often.
@@ -125,7 +125,7 @@ That's it, I hope it was a little bit more clarifying for readers!
 
 References:
 
-- [https://stackoverflow.com/questions/11207638/advantagses-of-bundleddependencies-over-normal-dependencies-in-npm](https://stackoverflow.com/questions/11207638/advantagses-of-bundleddependencies-over-normal-dependencies-in-npm)
+- [https://stackoverflow.com/questions/11207638/advantages-of-bundleddependencies-over-normal-dependencies-in-npm](https://stackoverflow.com/questions/11207638/advantages-of-bundleddependencies-over-normal-dependencies-in-npm)
 - [https://www.npmjs.com/](https://www.npmjs.com/)
 - [https://docs.npmjs.com/files/package.json](https://docs.npmjs.com/files/package.json)
 - [https://stackoverflow.com/questions/18875674/whats-the-difference-between-dependencies-devdependencies-and-peerdependencies](https://stackoverflow.com/questions/18875674/whats-the-difference-between-dependencies-devdependencies-and-peerdependencies)

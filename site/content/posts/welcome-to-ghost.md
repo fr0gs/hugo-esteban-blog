@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["Getting Started"]
-date = 0001-01-01T00:00:00Z
+date = 2017-03-18T14:18:52Z
 description = ""
 draft = false
 slug = "welcome-to-ghost"

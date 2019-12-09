@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["bash", "elasticsearch", "kibana", "docker"]
-date = 0001-01-01T00:00:00Z
+date = 2017-07-13T07:27:26Z
 description = "A small script to load automatically json files into ElasticSearch containers and visualize them with Kibana. "
 draft = false
 slug = "automatically-loading-json-files-to-elasticsearch"

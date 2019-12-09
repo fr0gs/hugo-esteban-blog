@@ -1,6 +1,6 @@
 +++
 author = "Esteban"
-date = 0001-01-01T00:00:00Z
+date = 2017-05-15T12:37:03Z
 description = ""
 draft = false
 slug = "minimal-working-setup-rails-5-api-activeadmin"

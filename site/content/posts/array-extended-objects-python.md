@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["python", "list-comprehensions", "lambda functions"]
-date = 0001-01-01T00:00:00Z
+date = 2017-12-04T20:39:40Z
 description = ""
 draft = false
 slug = "array-extended-objects-python"

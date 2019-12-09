@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["javascript"]
-date = 0001-01-01T00:00:00Z
+date = 2017-08-05T13:31:50Z
 description = "Old web applications generated a new html document per each state change. Single Page Applications use javascript routing to simulate state changes in a single document."
 draft = false
 image = "/images/2017/08/js_logo.png"
@@ -17,7 +17,7 @@ title = "Routing in Javascript"
 Originally web applications consisted in interconnected html documents that one could navigate through links between them. Every time a user clicked a link on a website a new  document would be generated in the server and sent back to the browser to be rendered in their screen.
 
 Around the year 2005 the term *Single-Page Application (SPA)* became popular. Said term encompassed a new way or architecting websites to make them behave more like desktop applications: snappy, with graphical animations and smooth transitions between links.
-This was achieved by taking advantagse of javascript, html & css, as new APIs became available to give the browser more native-like capabilities.
+This was achieved by taking advantage of javascript, html & css, as new APIs became available to give the browser more native-like capabilities.
 
 **SPAs** are based on a single document model. This means that web applications' lifespan happens on a single html page, along with the transitions between the different views. But since links no longer imply the fetching and generation of a new document, how are those transitions modelled? they are achieved by using a **router**.
 

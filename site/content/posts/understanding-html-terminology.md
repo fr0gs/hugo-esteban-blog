@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["html", "web"]
-date = 0001-01-01T00:00:00Z
+date = 2017-07-21T16:04:26Z
 description = "What is the difference between SGML, HTML, XML, XHTML and DHTML? I have always wondered it too."
 draft = false
 image = "/images/2017/07/logo-html.png"
@@ -40,7 +40,7 @@ When *The Web* was born, it did it as a system of internet servers that would al
 
 So the web browser would fetch that document from some server somewhere, and start interpreting it's content: "Oh hey, this is an HTML document! and.. oh yes, it has a title of **My Title**, so I will write that into the tab title, and also I see you have a document body, with a paragraph inside a section!, so I will paint that paragraph. But then I have another paragraph, so this means they must be separated by an empty line, since they are different blocks."
 
-One important characteristic about HTML is that it is not strictly parsed. It means that in the event of receiving wrong code, for instance an unclosed tags, the web browser won't fail to load and show the page but will do the best it can to correct the mistake and paint the document.
+One important characteristic about HTML is that it is not strictly parsed. It means that in the event of receiving wrong code, for instance an unclosed tag, the web browser won't fail to load and show the page but will do the best it can to correct the mistake and paint the document.
 
 So the author of the document wrote that "code" seen before, and the user who visited the web page of the author would see this:
 

@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["docker", "bigdata", "bde"]
-date = 0001-01-01T00:00:00Z
+date = 2017-08-23T09:14:12Z
 description = ""
 draft = false
 image = "/images/2017/08/logo-BigDataEurope.png"

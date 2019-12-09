@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["javascript", "belgium", "jsconf"]
-date = 0001-01-01T00:00:00Z
+date = 2017-07-04T20:20:58Z
 description = "A brief overview on the talks that went on during the jsconf.be 2017 edition in belgium."
 draft = false
 slug = "my-experience-in-jsconf-belgium-2017"

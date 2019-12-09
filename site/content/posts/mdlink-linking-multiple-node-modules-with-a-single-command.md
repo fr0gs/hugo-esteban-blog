@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["ember", "node", "nodejs", "javascript"]
-date = 0001-01-01T00:00:00Z
+date = 2017-12-20T18:59:53Z
 description = ""
 draft = false
 image = "/images/2017/12/node_js.png"

@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["javascript", "es6"]
-date = 0001-01-01T00:00:00Z
+date = 2017-09-10T18:40:44Z
 description = ""
 draft = false
 slug = "clojure-macros-in-es6"
@@ -46,7 +46,7 @@ And what would be going on under the hood is this:
 let sameresult = diff(sum(3, parseInt("3")), 10);
 ```
 
-So I decided to reimplement the code taking advantagse of the new features that came along with **ES6**(arrow functions, destructuring, rest parameters...).
+So I decided to reimplement the code taking advantage of the new features that came along with **ES6**(arrow functions, destructuring, rest parameters...).
 
 ```javascript
 const thread = (operator, first, ...args) => {

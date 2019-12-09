@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["python", "django"]
-date = 0001-01-01T00:00:00Z
+date = 2019-02-10T18:03:35Z
 description = ""
 draft = false
 image = "/images/2019/02/Django_logo.png"

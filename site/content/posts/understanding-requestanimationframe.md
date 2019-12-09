@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["javascript", "web", "learning"]
-date = 0001-01-01T00:00:00Z
+date = 2018-05-29T15:18:12Z
 description = "requestAnimationFrame is a basic construct when creating web based animations. This article aims to explain it in an approachable way."
 draft = false
 slug = "understanding-requestanimationframe"

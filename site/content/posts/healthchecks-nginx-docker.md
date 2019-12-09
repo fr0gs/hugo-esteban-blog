@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["nginx", "docker", "dockerfile"]
-date = 0001-01-01T00:00:00Z
+date = 2017-08-15T08:00:00Z
 description = "Different healthcheck techniques to verify nginx docker services' status."
 draft = false
 image = "/images/2017/08/docker_nginx.png"

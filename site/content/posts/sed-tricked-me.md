@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["sed", "awk", "bash", "commandline"]
-date = 0001-01-01T00:00:00Z
+date = 2017-07-09T15:53:20Z
 description = "Automating and scripting a process at work led to the discovery of  a particular behavior in sed when you try to execute a command in the substituting part."
 draft = false
 slug = "sed-tricked-me"
@@ -13,7 +13,7 @@ title = "Sed tricked me!"
 
 # Introduction
 
-Today I had some time free at work since I am between projects and I wait for some additional information, and I took advantagse of it to help a coworker that was new to **Ember.js**. For some reason all the calls to the backend (a Virtuoso Database) failed.
+Today I had some time free at work since I am between projects and I wait for some additional information, and I took advantage of it to help a coworker that was new to **Ember.js**. For some reason all the calls to the backend (a Virtuoso Database) failed.
 
 Taking a look together, we discovered that the middleware that transformed JSON-API calls into SPARQL queries and vice-versa, (the piece that was talking directly to the frontend) was consistently returning an error **500**, and this happened because the triples that were introduced into the database using a script were generated wrong and had all the same *id* for every different model.
 

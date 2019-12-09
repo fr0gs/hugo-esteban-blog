@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["docker", "docker-compose", "yaml", "yml", "javascript", "bde"]
-date = 0001-01-01T00:00:00Z
+date = 2017-09-03T15:18:00Z
 description = ""
 draft = false
 image = "/images/2017/09/yaml.png"

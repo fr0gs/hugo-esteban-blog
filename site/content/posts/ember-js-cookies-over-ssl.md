@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["ember", "ssl", "https"]
-date = 0001-01-01T00:00:00Z
+date = 2017-12-16T16:11:13Z
 description = "Make an ember.js application work with secure cookies when communicating against an API over SSL."
 draft = false
 image = "/images/2017/12/ssl.jpg"

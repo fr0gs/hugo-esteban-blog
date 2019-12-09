@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["python", "learning"]
-date = 0001-01-01T00:00:00Z
+date = 2018-10-22T12:47:56Z
 description = ""
 draft = false
 image = "/images/2018/10/Python-logo-notext.svg"

@@ -1,6 +1,6 @@
 +++
 author = "Esteban"
-date = 0001-01-01T00:00:00Z
+date = 2018-01-09T20:10:14Z
 description = ""
 draft = false
 slug = "year-2017-review-and-resolutions"

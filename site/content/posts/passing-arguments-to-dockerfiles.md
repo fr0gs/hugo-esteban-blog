@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 categories = ["docker", "dockerfile"]
-date = 0001-01-01T00:00:00Z
+date = 2017-07-15T10:54:52Z
 description = "When building docker images it is possible to provide variable arguments to provide an additional layer of customization. This post gives a brief overview."
 draft = false
 image = "/images/2017/07/docker-logo.png"
