@@ -44,7 +44,7 @@ One important characteristic about HTML is that it is not strictly parsed. It me
 
 So the author of the document wrote that "code" seen before, and the user who visited the web page of the author would see this:
 
-![](/content/images/2017/07/simplesite.png)
+![](/images/simplesite.png)
   
 It really is as simple as that. Without taking into account CSS to style those documents, giving them colours, shapes, you name it, and javascript to interact with them, websites were just are text documents written in a concrete way.
 
@@ -58,7 +58,7 @@ With SGML, you would need to specify:
   * The SGML declaration, enumerating the characters and delimiters that may appear in the application. You can find the charset declaration [for HTML 4.0 here.](https://www.w3.org/TR/WD-html40-970708/sgml/sgmldecl.html)
   * The **Document Type Definition**, defining the syntax of the markup constructs, for example:
 
-```
+```xml
 <!DOCTYPE tvguide [
 <!ELEMENT tvguide - - (date,channel+)>
 <!ELEMENT date - - (#PCDATA)>

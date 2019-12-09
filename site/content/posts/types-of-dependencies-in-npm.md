@@ -28,7 +28,7 @@ Very briefly explained, npm will read the contents of your package.json file and
 
 Dependencies are expressed in a hash with a pair of
 
-```
+```json
 {
   "package_name_1": "version range",
   "package_name_2": "version range",

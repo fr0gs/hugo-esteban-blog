@@ -16,7 +16,7 @@ In [a previous article](http://estebansastre.com/ember-nginx-docker-deployment-w
 
 A simplified diagram of the architecture would be:
 
-![](/content/images/2017/07/diag_disp.png)
+![](/images/diag_disp.png)
 
 All this services run using a docker-compose script like this one (it is a very simplified version):
 

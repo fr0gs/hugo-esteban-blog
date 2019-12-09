@@ -22,7 +22,7 @@ disqusShortname = "ink-demo"
 	subtitle = "Pretty much everything that crosses my mind, thoughts and ramblings"
 
 	# Optional 64x64 avatar image.
-	avatar = "myself.jpg"
+	avatar = "wizard.png"
 
 	# Content types to disable Disqus on.
 	disableDisqusTypes = ["page"]

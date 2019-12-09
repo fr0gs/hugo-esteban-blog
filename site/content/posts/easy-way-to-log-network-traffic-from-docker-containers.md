@@ -36,7 +36,7 @@ For each container one or several *.pcap* dump files will be created, depending 
 
 Here you can see an example of running a **mysql** docker container and starting to watch traffic for it:
 
-![](/content/images/2017/06/docker-watcher-cropped.png)
+![](/images/docker-watcher-cropped.png)
 
 # Considerations
 In order to extract information about the docker containers, the script uses Go templates and heavily depends on the format of the information output when performing **docker inspect** to a container. Changes in the structure of the information would break the tool, needing to adapt it to the new structure.

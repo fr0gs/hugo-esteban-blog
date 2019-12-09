@@ -4,7 +4,7 @@ categories = ["docker", "bigdata", "bde"]
 date = 2017-08-23T09:14:12Z
 description = ""
 draft = false
-image = "/images/2017/08/logo-BigDataEurope.png"
+image = "/images/logo-BigDataEurope.png"
 slug = "big-data-integrator"
 tags = ["docker", "bigdata", "bde"]
 title = "Big Data Integrator (BDI) Integrated Development Environment (IDE)"
@@ -32,7 +32,7 @@ The basic application to start from is constituted of several components:
 
 Systems are organized following a microservices architecture and run together using a docker-compose script, some of them sharing microserviecs common to all architectures, like the *identifier*, *dispatcher*, or *resource*. This is a more visual representation of the basic architecture:
 
-![bdi-arch--1-](/content/images/2017/08/bdi-arch--1-.png)
+![bdi-arch--1-](/images/bdi-arch--1-.png)
 
 
 # Installation & Usage
