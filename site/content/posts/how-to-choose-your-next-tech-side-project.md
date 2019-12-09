@@ -33,12 +33,7 @@ Then, the moment of complete despair comes when I run out of them, when I dismis
 
 It is not uncommon to spend a considerable amount of time thinking on which project to embark next. Since this is a recurring problem I have eventually decided to sketch out a mind map describing the process I go through when looking for something new to do. 
 
-<br>
-
-<img style="display: block; margin-left: auto; margin-right:auto" id="project-choice" src="/content/images/2018/06/project-choice.png" alt="project-choice">
-
-<br>
-
+![](/images/project-choice.png)
 
 I have divided the potential **Idea Triggers** in six groups, colored in different shades of green. Once a choice is made, the **Possible Actions** are in different shades of orange, all but the "Choose Stack" choice, which I'll explain later. 
 

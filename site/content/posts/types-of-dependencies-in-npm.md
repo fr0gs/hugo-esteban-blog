@@ -49,7 +49,7 @@ These are the libraries your project directly depends on in order to properly ex
 
 They represent the packages needed during the development of your project, such as tools and frameworks, that are not needed in the final product. An example for a project developed with the [Ember](https://www.emberjs.com/) javascript framework, could be:
 
-```
+```json
 "devDependencies": {
   "ember-cli": "2.11.1",
   "ember-cli-sass": "^5.3.1",
@@ -66,7 +66,7 @@ As you can see, a final user of your product is not interested to have this auxi
 
 **peerDependencies** are used to avoid name clashes and application crashes when a package depends on a library's version that is not the same as the specified one in the project's *package.json*. For example:
 
-```
+```json
 {
   "name": "test_peer",
   "version": "1.0.0",
@@ -86,7 +86,7 @@ As you can see, a final user of your product is not interested to have this auxi
 
 I specify version "1" of webpack and also install **grunt-webpack**. **grunt-webpack** states a different webpack version in it's **peerDependencies** hash:
 
-```
+```json
 "peerDependencies": {
   "webpack": "^2.1.0-beta || ^2.2.0-rc || 2 || 3"
 },
@@ -94,7 +94,7 @@ I specify version "1" of webpack and also install **grunt-webpack**. **grunt-web
 
 The result of `npm install` this project is:
 
-```
+```sh
 test_peer@1.0.0 /home/esteban/gits/test/test_peer
 ├─┬ grunt-webpack@3.0.0
 │ ├─┬ deep-for-each@1.0.6

@@ -33,7 +33,7 @@ Most of the places I went to were due to friends living there, visiting over, or
 
 A hodgepodge of cultures, religions and origins. A hidden oasis for those who seek for an inner voyage.
 
-![20170610_111517](/content/images/2018/01/20170610_111517.jpg)
+![20170610_111517](/images/esteban_reunion.jpg)
 
 Best. Place. Ever.
 

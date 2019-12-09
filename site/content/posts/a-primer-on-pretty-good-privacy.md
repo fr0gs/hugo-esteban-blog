@@ -41,7 +41,7 @@ Encrypting a message is the act of codifying it to make it unreadable to an exte
 
 <br>
 
-![pgp-encrypt](/content/images/2018/05/pgp-encrypt.png)
+![pgp-encrypt](/images/pgp-encrypt.png)
 
 <br>
 
@@ -52,7 +52,7 @@ The process of data encryption & decryption has multiple steps to be taken into 
 
 <br>
 
-![pgp-encrypt-overview](/content/images/2018/05/pgp-encrypt-overview.png)
+![pgp-encrypt-overview](/images/pgp-encrypt-overview.png)
 
 <br>
 
@@ -69,7 +69,7 @@ Inversely, what is left for the receiver is to use their private key to decrypt 
 
 <br>
 
-![pgp-decrypt-overview](/content/images/2018/05/pgp-decrypt-overview.png)
+![pgp-decrypt-overview](/images/pgp-decrypt-overview.png)
 
 <br>
 
@@ -81,7 +81,7 @@ The solution **PGP** provides is by creating a *digital signature* of the messag
 
 <br>
 
-![pgp-digital-signature](/content/images/2018/05/pgp-digital-signature.png)
+![pgp-digital-signature](/images/pgp-digital-signature.png)
 
 <br>
 

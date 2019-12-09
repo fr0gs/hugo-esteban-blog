@@ -43,7 +43,7 @@ In order to extract information about the docker containers, the script uses Go 
 
 The latest docker version it supports is:
 
-```
+```sh
 Client:
  Version:      17.05.0-ce
  API version:  1.29

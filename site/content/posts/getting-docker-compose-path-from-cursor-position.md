@@ -16,7 +16,7 @@ title = "Getting docker-compose path from cursor position"
 
 The [Stack Builder](https://github.com/big-data-europe/app-stack-builder) application as part of the [Big Data Europe](https://www.big-data-europe.eu/) platform is a system that helps in the process of building **docker-compose.yml** files. You can drag & drop existing docker-compose files from the project into a *textarea* to be shown and also search for other repositories in the big data europe github organization, composing a whole new system by taking useful pieces of systems and putting them together.
 
-![stackbuilder1](/content/images/2017/09/stackbuilder1.png)
+![stackbuilder1](/images/stackbuilder1.png)
 
 Additionally, it provides small hinting functionality for example by showing a dropdown menu with already existing containers to link them. The idea is to add more intelligence to this hinting process, by being able to know the context on where the user is situated while editing the docker-compose file, and therefore knowing what kind of information may be suitable for them.
 

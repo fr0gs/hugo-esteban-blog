@@ -42,7 +42,7 @@ Additionally, per each term there is a list of pairs (**document id**, **occurre
 Therefore, the Inverted Index after processing the previous two documents would be:
 
 
-
+```sh
 | Term    | Appearances (DocId, Frequency) |
 |---------|----------------------------------|
 | The     | (1, 1)                           |
@@ -58,7 +58,7 @@ Therefore, the Inverted Index after processing the previous two documents would 
 | all     | (1, 1)                           |
 | the     | (1, 1)                           |
 | time    | (1, 1)                           |
-
+```
 
 
 As seen, the term *Belgium* appears once in both documents, while the term *beer* appears once in the first and twice in the second one. Whenever a search is issued, the index will be looked up and the corresponding documents retrieved automatically.
@@ -241,11 +241,11 @@ main()
 
 Doing a couple searches we can see the result:
 
-![inverted1](/content/images/2018/10/inverted1.png)
+![inverted1](/images/inverted1.png)
 
 and another one.
 
-![inverted2](/content/images/2018/10/inverted2.png)
+![inverted2](/images/inverted2.png)
 
 
 I hope this served as a good introduction on how the Inverted Index works.
