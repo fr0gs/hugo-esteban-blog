@@ -73,7 +73,8 @@ Then you should reach out to me and **hire me!** ;)
 
 If you want to send me encrypted email, my **PGP Public Key** is:
 
-```
+
+```sh
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQINBFyssW8BEAC4hDgjTulIZLo6Na6+On4U1VIwLZdiYF/fyoNkwhCH1ZKOgGMP
