@@ -16,7 +16,7 @@ title = "Ember.js cookies over SSL"
 
 I am currently working on an issue in a very old Ember.js application (version 1.13.0 of the ember-cli). After performing the regular ritual: `npm install; bower install; ember s --proxy <proxy>` I was presented with the application's login screen, but what was my surprise that after introducing a valid set of credentials, the next http call invariably failed.
 
-```
+```sh
 Client -> POST /sessions -> Server API (works)
 Client -> GET /settings -> Server API (fails)
 ```
@@ -48,7 +48,7 @@ Then you can run the ember-cli specifying the ssl options in **.ember-cli**:
 
 By default ember will look into the `ssl/` folder for the **server.key** and the **server.crt** files, so creating those files inside the folder and running
 
-```
+```sh
 $ ember s --ssl=true --proxy <proxy>
 ```
 

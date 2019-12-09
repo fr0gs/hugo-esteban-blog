@@ -20,7 +20,7 @@ When using [docker](https://www.docker.com/) as our virtualization software of c
 
 The easiest way is to specify an environment variable inside the *Dockerfile* with the **ENV** keyword and then reference it from within the file. For instance, when you just need to update the version of a package and do some operations depending on that version:
 
-```
+```sh
 FROM image
 ENV PKG_VERSION 1.0.0
 RUN curl http://my.cdn.com/package-$PKG_VERSION.zip
@@ -37,7 +37,7 @@ The **ARG** keyword defines a variable that users can access at build time when 
 ```
 
 *Dockerfile*:
-```
+```sh
 FROM image
 ARG PKG_VERSION
 RUN curl http://my.cdn.com/package-$PKG_VERSION.zip
@@ -46,7 +46,7 @@ RUN curl http://my.cdn.com/package-$PKG_VERSION.zip
 And in this case, the **PKG_VERSION** variable would only live during the build process, being unreachable from within the containers. Additionally, it is also possible to set **ARG** with a default value in case no `--build--arg` is specified:
 
 *Dockerfile*:
-```
+```sh
 FROM image
 ARG PKG_VERSION=1.0.0
 RUN curl http://my.cdn.com/package-$PKG_VERSION.zip
@@ -59,7 +59,7 @@ Of course, you could also define an environment variable that would depend on a 
 ```
 
 *Dockerfile*:
-```
+```sh
 FROM image
 ARG VERSION_ARG=1.0.0
 ENV PKG_VERSION=$VERSION_ARG

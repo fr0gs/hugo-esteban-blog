@@ -21,11 +21,11 @@ The [Stack Builder](https://github.com/big-data-europe/app-stack-builder) applic
 Additionally, it provides small hinting functionality for example by showing a dropdown menu with already existing containers to link them. The idea is to add more intelligence to this hinting process, by being able to know the context on where the user is situated while editing the docker-compose file, and therefore knowing what kind of information may be suitable for them.
 
 ```yml
-  web:
-    image: nginx
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    command: [nginx-debug, '-g', 'daemon off;']
+web:
+  image: nginx
+  volumes:
+    - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  command: [nginx-debug, '-g', 'daemon off;']
 ```    
 
 Say that the user has the cursor in the `- ./nginx.conf:/etc/nginx/nginx.conf:ro` line. If we know that the user is situated in the `web.volumes` path we can add hints into additional volume mount paths that are commonly used for **nginx** containers.

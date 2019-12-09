@@ -110,7 +110,7 @@ This kind of checks involve adding application logic directly, via configuration
 Nginx will monitor your connections for upstream server failures and try to resume them after some time. In my example, tests will be done from the **nginx-proxy** service to the upstream **nginx-server** service.
 
 **nginx.conf**:
-```
+```sh
 # Upstream server for nginx-server
 upstream nginx_server {
   server nginx-server max_fails=3 fail_timeout=30s;
@@ -124,7 +124,7 @@ upstream nginx_server {
 
 In order to actively check the health of upstream servers, nginx can send special requests to verify it. It is as easy as adding the directive `health_check` in the *location* context, as long as there is a *proxy_pass* directive that specifies an upstream server:
 
-```
+```sh
 upstream nginx_server {
   server nginx-server;
 }

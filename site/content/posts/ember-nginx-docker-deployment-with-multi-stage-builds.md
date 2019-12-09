@@ -29,7 +29,7 @@ Afterwards, when building the **nginx** docker image, from the *Dockerfile* we d
 
 The *Dockerfile* is self explanatory:
 
-```
+```sh
 FROM semtech/mu-nginx-spa-proxy
 
 MAINTAINER Aad Versteden <madnificent@gmail.com>
@@ -58,7 +58,7 @@ The solution came by using a combination of two new approaches:
 
 The first part is achieved by using the [docker-ember](https://github.com/madnificent/docker-ember) image, ensuring fixed versions for the build tools:
 
-```
+```sh
 FROM ubuntu:16.04
 MAINTAINER Aad Versteden <madnificent@gmail.com>
 
@@ -78,7 +78,7 @@ WORKDIR /app
 The second part is achieved by using the multi-stage build in the process, building the ember app and copying the resulting *dist* output folder inside **nginx**'s serving directory.
 
 
-```
+```sh
 FROM madnificent/ember:2.14.0 as ember
 MAINTAINER Esteban Sastre <esteban.sastre@tenforce.com>
 
