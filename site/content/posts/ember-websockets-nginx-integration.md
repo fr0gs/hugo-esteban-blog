@@ -12,7 +12,7 @@ title = "Ember Websockets & nginx integration"
 +++
 
 
-In [a previous article](http://estebansastre.com/ember-nginx-docker-deployment-with-multi-stage-builds/) I explained our approach at work to deploy an **Ember.js** application in an **nginx** server running on docker. Today I had to integrate an instance of that application to communicate with another microservice using **WebSockets**.
+In [a previous article](http://estebansastre.com/ember-nginx-docker-deployment-with-multi-stagse-builds/) I explained our approach at work to deploy an **Ember.js** application in an **nginx** server running on docker. Today I had to integrate an instance of that application to communicate with another microservice using **WebSockets**.
 
 A simplified diagram of the architecture would be:
 

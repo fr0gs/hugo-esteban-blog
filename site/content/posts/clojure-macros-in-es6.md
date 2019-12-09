@@ -46,7 +46,7 @@ And what would be going on under the hood is this:
 let sameresult = diff(sum(3, parseInt("3")), 10);
 ```
 
-So I decided to reimplement the code taking advantage of the new features that came along with **ES6**(arrow functions, destructuring, rest parameters...).
+So I decided to reimplement the code taking advantagse of the new features that came along with **ES6**(arrow functions, destructuring, rest parameters...).
 
 ```javascript
 const thread = (operator, first, ...args) => {

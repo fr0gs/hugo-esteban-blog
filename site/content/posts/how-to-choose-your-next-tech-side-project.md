@@ -69,7 +69,7 @@ You might be looking for a new job that can be either related to your current on
 
 However, it is not uncommon for a developer to slide from one to another. Let's take a few examples:
 
-* You are a frontend developer working in a web application, you realize there are many security holes in the code & architecture and you decide to fix them. You become increasingly interested in multiple ways attackers can take advantage of a web application and therefore you start to know it's correspondent security measures (*XSS*, *SQL injection*, *RFI*, *LFI*, etc.. vs. *CSP*, *CORS*, *Character filtering*, etc..). After some joyful playing you decide you find more enjoyment and purpose in web security and want to jump to a **Security Consultant/Architect** position.
+* You are a frontend developer working in a web application, you realize there are many security holes in the code & architecture and you decide to fix them. You become increasingly interested in multiple ways attackers can take advantagse of a web application and therefore you start to know it's correspondent security measures (*XSS*, *SQL injection*, *RFI*, *LFI*, etc.. vs. *CSP*, *CORS*, *Character filtering*, etc..). After some joyful playing you decide you find more enjoyment and purpose in web security and want to jump to a **Security Consultant/Architect** position.
 * You are a backend developer and your next task is to find out why the DB queries are so slow. You start to enjoy data modeling and database administration and start to research alternative databases: *NoSQL*, *GraphQL*, *Triplestores*, etc.. and decide you want to move into a **DBA** role.
 * You are a developer who is bored of waiting so much for the CD/CI cycle and decide to create your own set of scripts and try to tweak Travis, Jenkins or whatever your organization has running. You realize you love scripting and DevOps and want to jump into a role to do that. 
 
@@ -114,7 +114,7 @@ Again, although enjoyment is paramount, sticking to these projects is hard since
 ## Solve a real problem
 
 
-By far the easiest to stick to. If you are lucky enough to come accross a real problem you realize you could automate or build a software solution for it, you hit a gold mine. You have the motivation to craft something new with the added advantage of being useful for yourself or a group of people. 
+By far the easiest to stick to. If you are lucky enough to come accross a real problem you realize you could automate or build a software solution for it, you hit a gold mine. You have the motivation to craft something new with the added advantagse of being useful for yourself or a group of people. 
 
 An example of this could be that you participate in a cultural center in your neighborhood, and you notice they are having some trouble managing the activities, letting people know about the offer and providing a way of proposing new ones. Hence, you roll up your sleeves and decide to create a web application to cover those use cases.
 

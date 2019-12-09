@@ -17,7 +17,7 @@ However this solution didn't come with out-of-the-box comments functionality, an
 
 I chose **Disqus** because taking a look at all the alternatives, it provides an stupid simple way of integrating the widget, just registering on Disqus' site, a sprinkle of html and javascript and you have it up & running.
 
-Additionally, the fact of utilizing an external service relieves me of the hassle of hosting comments myself, and gives multiple advantages for free: security, social buttons, sharing, and synchronizing with comments made in other disqus-powered comment boards.
+Additionally, the fact of utilizing an external service relieves me of the hassle of hosting comments myself, and gives multiple advantagses for free: security, social buttons, sharing, and synchronizing with comments made in other disqus-powered comment boards.
 
 I see two drawbacks though: on one side, it involves an additional http request that user's browser must make to activate the comment board. On the other side, Disqus does not allow anonymous comments, but perhaps that's a good thing right? I don't really need XSS attempts and viagra advertisements all over my posts.
 

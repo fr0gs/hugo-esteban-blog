@@ -18,7 +18,7 @@ We often find ourselves developing projects that depend on other vendor’s libr
 
 Git subtree provides a way to incorporate that external project into another one (normally bigger) by copying it inside the parent one and making it share the parent’s commit history from that moment on.
 
-This is known as system-based approach in development, where you architect your design by taking the different interconnected projects as a whole. That strategy involves tagging, merging and pushing the whole repository constantly. One commit history to rule them all.
+This is known as system-based approach in development, where you architect your design by taking the different interconnected projects as a whole. That strategy involves tagsging, merging and pushing the whole repository constantly. One commit history to rule them all.
 
 How does it work? Imagine we have two projects: the big one (the-backend), and the small one (the-frontend). Former is the main project, being constantly changed and under heavy commit routine. The latter is the mobile web application that consumes the backend’s API. Stable, and only being changed every backend’s major release.
 

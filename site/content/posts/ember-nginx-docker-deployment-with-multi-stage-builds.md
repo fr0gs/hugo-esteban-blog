@@ -2,12 +2,12 @@
 author = "Esteban"
 categories = ["docker", "dockerfile", "ember"]
 date = 0001-01-01T00:00:00Z
-description = "How to deploy an ember.js application in an nginx docker container by leveraging multi-stage docker builds."
+description = "How to deploy an ember.js application in an nginx docker container by leveraging multi-stagse docker builds."
 draft = false
 image = "/images/2017/07/tomster.png"
-slug = "ember-nginx-docker-deployment-with-multi-stage-builds"
+slug = "ember-nginx-docker-deployment-with-multi-stagse-builds"
 tags = ["docker", "dockerfile", "ember"]
-title = "Ember & nginx docker deployment with multi-stage builds"
+title = "Ember & nginx docker deployment with multi-stagse builds"
 
 +++
 
@@ -23,7 +23,7 @@ particular use case.
 
 Our fronted stack consists of **Ember.js** happily running in an **nginx** server inside a docker container. The initial building & deployment process that we had was effective but a little cumbersome. I will use TenForce's [webcat](https://github.com/tenforce/webcat) repository as example.
 
-Initially the Ember application is built via command line (`ember build --prod`), generating a *dist.zip* file. The file is then uploaded to the [repository releases](https://github.com/tenforce/webcat/releases) with a new tag assigned.
+Initially the Ember application is built via command line (`ember build --prod`), generating a *dist.zip* file. The file is then uploaded to the [repository releases](https://github.com/tenforce/webcat/releases) with a new tags assigned.
 
 Afterwards, when building the **nginx** docker image, from the *Dockerfile* we detect the current version of the frontend reading it from the *package.json* file and fetch it from the github releases, unpacking the zip file contents into the **nginx** serving directory.
 
@@ -53,7 +53,7 @@ Now this has two problems:
 The solution came by using a combination of two new approaches:
 
   1. Using a docker image with **node**,**npm**, **bower** & **ember-cli** installed, therefore guaranteeing that every build would be with the same versions.
-  2. Using **Docker**'s [multi-stage builds](https://docs.docker.com/engine/userguide/eng-image/multistage-build/#use-multi-stage-builds). Simply put, it allows to use the output of a given image as the input of the next one , avoiding fat images and simplifying the building process.
+  2. Using **Docker**'s [multi-stagse builds](https://docs.docker.com/engine/userguide/eng-image/multistagse-build/#use-multi-stagse-builds). Simply put, it allows to use the output of a given image as the input of the next one , avoiding fat images and simplifying the building process.
 
 
 The first part is achieved by using the [docker-ember](https://github.com/madnificent/docker-ember) image, ensuring fixed versions for the build tools:
@@ -75,7 +75,7 @@ WORKDIR /app
 ```
 
 
-The second part is achieved by using the multi-stage build in the process, building the ember app and copying the resulting *dist* output folder inside **nginx**'s serving directory.
+The second part is achieved by using the multi-stagse build in the process, building the ember app and copying the resulting *dist* output folder inside **nginx**'s serving directory.
 
 
 ```
