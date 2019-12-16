@@ -17,8 +17,8 @@ pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
 # Google Analytics tracking ID
-# googleAnalytics = "UA-99848055-1"
-# disqusShortname = "ink-demo"
+googleAnalytics = "UA-99848055-1"
+disqusShortname = "ink-demo"
 
 
 # Populate .Site.Params variable to use in templates
