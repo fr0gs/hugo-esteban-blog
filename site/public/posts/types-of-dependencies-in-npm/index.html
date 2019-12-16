@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Types of dependencies in NPM. - Esteban Sastre</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Types of dependencies in NPM." />
+<meta property="og:description" content="What are the differences between dependencies, devDependencies, peerDependencies, bundledDependencies and optionalDependencies in npm projects? You got it!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/types-of-dependencies-in-npm/" />
+<meta property="article:published_time" content="2017-06-25T19:48:15+00:00" />
+<meta property="article:modified_time" content="2017-06-25T19:48:15+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Types of dependencies in NPM."/>
+<meta name="twitter:description" content="What are the differences between dependencies, devDependencies, peerDependencies, bundledDependencies and optionalDependencies in npm projects? You got it!"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" /><link rel="stylesheet" type="text/css" href="/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="/">
+				<img src="wizard.png" alt="Esteban Sastre" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="/">Esteban Sastre</a></h1>
+	<div class="site-description"><p>Pretty much everything that crosses my mind, thoughts and ramblings</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fr0gs/" title="Github"><i data-feather="github"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">25</span>
+							<span class="rest">Jun 2017</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Types of dependencies in NPM.</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<h2 id="introduction">Introduction</h2>
+<p>When we start a new javascript project and we count on adding a minimal level of complexity to it, we will eventually need to make use of external libraries if we want to avoid writing every feature totally from scratch. For that matter, you can choose to take three approaches:</p>
+<ul>
+<li>Download the library code bundle and adapt it to your development and deployment process. This is easy if the library is very small, you don't care about updating it's version, and you know very specifically what you want from it.</li>
+<li>Use a <a href="https://en.wikipedia.org/wiki/Content_delivery_network">Content Delivery Network</a> to access a remote copy of the library hosted in the cloud.</li>
+<li>Use a tool like <a href="https://www.npmjs.com/">NPM</a>, <a href="https://bower.io/">Bower</a>, or the new kid in town <a href="https://yarnpkg.com/en/">Yarn</a>. This are package managers: pieces of software that allow the developer manage the projet's dependencies by fetching them from a central repository, specify each library's desired version and execute scripts for different steps of the development process.</li>
+</ul>
+<p>When you are working on a project and decide to use npm as it's package manager, it will use a file named <em>package.json</em> in the root of the project's directory. This file contains the information about the dependencies on external libraries it has, along with other useful information. It sits as the point of reference that npm will use when fetching and updating your dependencies. More information about the package.json file [here](link to package.json explanation).</p>
+<h2 id="how-does-it-work">How does it work.</h2>
+<p>Very briefly explained, npm will read the contents of your package.json file and will enumerate the libraries your current project depends on. It will then fetch each library in a recursive manner, namely, each one of those libraries may contain themselves a <em>package.json</em> file enumerating the dependencies that library relies upon, so it'll fetch them again, and so on, and so on.</p>
+<p>Dependencies are expressed in a hash with a pair of</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  &#34;package_name_1&#34;: <span style="color:#a31515">&#34;version range&#34;</span>,
+  &#34;package_name_2&#34;: <span style="color:#a31515">&#34;version range&#34;</span>,
+  <span style="">.</span><span style="">.</span><span style="">.</span>
+}
+</code></pre></div><p>per each of them. The version range can be a <strong>string</strong> indicating the version range to fetch from the central repository, a <strong>tarball</strong> or a <strong>git url</strong> pointing to a specific tag or commit.</p>
+<p>There are different ways inside the <em>package.json</em> file to indicate the nature of the dependencies: <strong>dependencies</strong>, <strong>devDependencies</strong> and <strong>peerDependencies</strong>.
+You can also find <strong>bundledDependencies</strong> and <strong>optionalDependencies</strong>, but I do not see them used that often.</p>
+<h1 id="dependencies">dependencies</h1>
+<p>These are the libraries your project directly depends on in order to properly execute. There is a direct dependency from the correct functioning of your application to the fetching of this packages. After compiling and minifying your javascript, the final bundle must include these libraries code to work.</p>
+<h1 id="devdependencies">devDependencies</h1>
+<p>They represent the packages needed during the development of your project, such as tools and frameworks, that are not needed in the final product. An example for a project developed with the <a href="https://www.emberjs.com/">Ember</a> javascript framework, could be:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;devDependencies&#34;</span><span style="">:</span> {
+  &#34;ember-cli&#34;: <span style="color:#a31515">&#34;2.11.1&#34;</span>,
+  &#34;ember-cli-sass&#34;: <span style="color:#a31515">&#34;^5.3.1&#34;</span>,
+}
+</code></pre></div><ul>
+<li><strong>ember-cli</strong> is the command line tool that helps the creation of blueprints for the project, run scripts, etc.. much as the <a href="http://rubyonrails.org/">rails</a> cli tool.</li>
+<li><strong>ember-cli-sass</strong> contains files to help translate the <em>sass</em> code into css code.</li>
+</ul>
+<p>As you can see, a final user of your product is not interested to have this auxiliary tools in the final bundle.</p>
+<h1 id="peerdependencies">peerDependencies</h1>
+<p><strong>peerDependencies</strong> are used to avoid name clashes and application crashes when a package depends on a library's version that is not the same as the specified one in the project's <em>package.json</em>. For example:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  &#34;name&#34;: <span style="color:#a31515">&#34;test_peer&#34;</span>,
+  &#34;version&#34;: <span style="color:#a31515">&#34;1.0.0&#34;</span>,
+  &#34;description&#34;: <span style="color:#a31515">&#34;&#34;</span>,
+  &#34;main&#34;: <span style="color:#a31515">&#34;index.js&#34;</span>,
+  &#34;scripts&#34;: {
+    &#34;test&#34;: <span style="color:#a31515">&#34;echo \&#34;Error: no test specified\&#34; &amp;&amp; exit 1&#34;</span>
+  },
+  &#34;author&#34;: <span style="color:#a31515">&#34;&#34;</span>,
+  &#34;license&#34;: <span style="color:#a31515">&#34;ISC&#34;</span>,
+  &#34;dependencies&#34;: {
+    &#34;grunt-webpack&#34;: <span style="color:#a31515">&#34;^3.0.0&#34;</span>,
+    &#34;webpack&#34;: <span style="color:#a31515">&#34;^1.0.0&#34;</span>
+  }
+}
+</code></pre></div><p>I specify version &ldquo;1&rdquo; of webpack and also install <strong>grunt-webpack</strong>. <strong>grunt-webpack</strong> states a different webpack version in it's <strong>peerDependencies</strong> hash:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;peerDependencies&#34;</span><span style="">:</span> {
+  &#34;webpack&#34;: <span style="color:#a31515">&#34;^2.1.0-beta || ^2.2.0-rc || 2 || 3&#34;</span>
+}<span style="">,</span>
+</code></pre></div><p>The result of <code>npm install</code> this project is:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">test_peer@1.0.0 /home/esteban/gits/test/test_peer
+├─┬ grunt-webpack@3.0.0
+│ ├─┬ deep-for-each@1.0.6
+│ │ └─┬ is-plain-object@2.0.3
+│ │   └── isobject@3.0.0
+│ └── lodash@4.17.4
+└─┬ UNMET PEER DEPENDENCY webpack@1.0.0
+
+... etc ...
+</code></pre></div><p>This means that while in my project I downloaded version <strong>1</strong> of webpack, <strong>grunt-webpack</strong> depends on another set of versions to safely execute, so the package manager will intercede for us and warn us that this setup may break the program.</p>
+<h1 id="bundleddependencies">bundledDependencies</h1>
+<p>They can also be written as <em>bundleDependencies</em>. They enumerate the dependencies that must be included in your project just as regular dependencies. They will also be included in the tarball generated as the result of executing <code>npm pack</code>.</p>
+<p>They are used for example if you want to include third party libraries that are not part of the npm registry, or distribute your project as a module.</p>
+<h1 id="optionaldependencies">optionalDependencies</h1>
+<p>Just like regular dependencies, but builds don't fail if the dependencies are not met.</p>
+<p>That's it, I hope it was a little bit more clarifying for readers!</p>
+<p>References:</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/11207638/advantages-of-bundleddependencies-over-normal-dependencies-in-npm">https://stackoverflow.com/questions/11207638/advantages-of-bundleddependencies-over-normal-dependencies-in-npm</a></li>
+<li><a href="https://www.npmjs.com/">https://www.npmjs.com/</a></li>
+<li><a href="https://docs.npmjs.com/files/package.json">https://docs.npmjs.com/files/package.json</a></li>
+<li><a href="https://stackoverflow.com/questions/18875674/whats-the-difference-between-dependencies-devdependencies-and-peerdependencies">https://stackoverflow.com/questions/18875674/whats-the-difference-between-dependencies-devdependencies-and-peerdependencies</a></li>
+<li><a href="https://stackoverflow.com/questions/26737819/why-use-peer-dependencies-in-npm-for-plugins">https://stackoverflow.com/questions/26737819/why-use-peer-dependencies-in-npm-for-plugins</a></li>
+</ul>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/npm">npm</a></li>
+							
+							<li><a href="/tags/node">node</a></li>
+							
+							<li><a href="/tags/nodejs">nodejs</a></li>
+							
+							<li><a href="/tags/javascript">javascript</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'ink-demo';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+		Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-99848055-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

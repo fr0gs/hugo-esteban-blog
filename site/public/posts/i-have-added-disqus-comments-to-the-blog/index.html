@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>I have added Disqus comments to the blog - Esteban Sastre</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="I have added Disqus comments to the blog" />
+<meta property="og:description" content="Hello! I moved my blog to Ghost as the previous one was hosted in a Wordpress free plan and I linked it from my personal website, and I wanted more control over that and also having a more uniform user interface, provided that my former site&#39;s design was a modified free bootstrap &amp; some jquery template and it was frankly ugly.
+The ghost theme I chose for this blog may not be the fanciest on the internet but it is damn sure it is simple and does not draw attention away from the main point of the site, which is writing posts and giving some information." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/i-have-added-disqus-comments-to-the-blog/" />
+<meta property="article:published_time" content="2017-09-01T12:44:15+00:00" />
+<meta property="article:modified_time" content="2017-09-01T12:44:15+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="I have added Disqus comments to the blog"/>
+<meta name="twitter:description" content="Hello! I moved my blog to Ghost as the previous one was hosted in a Wordpress free plan and I linked it from my personal website, and I wanted more control over that and also having a more uniform user interface, provided that my former site&#39;s design was a modified free bootstrap &amp; some jquery template and it was frankly ugly.
+The ghost theme I chose for this blog may not be the fanciest on the internet but it is damn sure it is simple and does not draw attention away from the main point of the site, which is writing posts and giving some information."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" /><link rel="stylesheet" type="text/css" href="/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="/">
+				<img src="wizard.png" alt="Esteban Sastre" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="/">Esteban Sastre</a></h1>
+	<div class="site-description"><p>Pretty much everything that crosses my mind, thoughts and ramblings</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fr0gs/" title="Github"><i data-feather="github"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">01</span>
+							<span class="rest">Sep 2017</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">I have added Disqus comments to the blog</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p>Hello! I moved my blog to <strong>Ghost</strong> as the previous one was hosted in a <strong>Wordpress</strong> free plan and I linked it from my personal website, and I wanted more control over that and also having a more uniform user interface, provided that my former site's design was a modified free <em>bootstrap &amp; some jquery</em> template and it was frankly ugly.</p>
+<p>The ghost theme I chose for this blog may not be the fanciest on the internet but it is damn sure it is simple and does not draw attention away from the main point of the site, which is writing posts and giving some information.</p>
+<p>However this solution didn't come with out-of-the-box comments functionality, and I really want users who want to engage with my content to have a way to do it other than pinging me over twitter or sending me an email.</p>
+<p>I chose <strong>Disqus</strong> because taking a look at all the alternatives, it provides an stupid simple way of integrating the widget, just registering on Disqus&rsquo; site, a sprinkle of html and javascript and you have it up &amp; running.</p>
+<p>Additionally, the fact of utilizing an external service relieves me of the hassle of hosting comments myself, and gives multiple advantages for free: security, social buttons, sharing, and synchronizing with comments made in other disqus-powered comment boards.</p>
+<p>I see two drawbacks though: on one side, it involves an additional http request that user's browser must make to activate the comment board. On the other side, Disqus does not allow anonymous comments, but perhaps that's a good thing right? I don't really need XSS attempts and viagra advertisements all over my posts.</p>
+<p>Have fun!</p>
+
+			</div>
+
+			<div class="tags">
+				
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'ink-demo';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+		Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-99848055-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

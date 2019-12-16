@@ -1,23 +1,27 @@
+# Hostname and path to root
 baseurl = "/"
+
+# Language code (RSS and multilingual sites)
 languageCode = "en-us"
 languageLang = "en"
+
 title = "Esteban Sastre"
 theme = "hugo-ink"
 
-# RSS, categories and tags disabled for an easy start
-# See configuration options for more details: 
-# https://gohugo.io/getting-started/configuration/#toml-configuration
-disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
-
+# Default number elements per page in pagination.
 paginate = 5
 
+# Code highlighting
 pygmentsstyle = "vs"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
-googleAnalytics = "UA-123-45"
-disqusShortname = "ink-demo"
+# Google Analytics tracking ID
+# googleAnalytics = "UA-99848055-1"
+# disqusShortname = "ink-demo"
 
+
+# Populate .Site.Params variable to use in templates
 [params]
 	subtitle = "Pretty much everything that crosses my mind, thoughts and ramblings"
 
@@ -25,7 +29,7 @@ disqusShortname = "ink-demo"
 	avatar = "wizard.png"
 
 	# Content types to disable Disqus on.
-	disableDisqusTypes = ["page"]
+	# disableDisqusTypes = ["page"]
 	
 	featherIconsCDN = true
 

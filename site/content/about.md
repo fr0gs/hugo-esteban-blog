@@ -4,7 +4,6 @@ categories = ["about"]
 date = 0001-01-01T00:00:00Z
 description = "Esteban Sastre's personal website blog. Frontend development, web Performance and web security. "
 draft = false
-image = "/images/2017/05/twitterbird.png"
 slug = "about"
 tags = ["about"]
 title = "About Me"

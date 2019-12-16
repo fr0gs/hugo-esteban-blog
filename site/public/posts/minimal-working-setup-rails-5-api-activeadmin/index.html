@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Minimal working setup Rails 5 API &#43; ActiveAdmin - Esteban Sastre</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Minimal working setup Rails 5 API &#43; ActiveAdmin" />
+<meta property="og:description" content="First of all add the ActiveAdmin and the Devise gems. Devise is needed because ActiveAdmin will use it as the authentication mechanism.
+Gemfile:
+gem &#39;devise&#39;, &#39;&gt; 4.x&#39; gem &#39;activeadmin&#39;, github: &#39;activeadmin&#39; We install the gems:
+bundle install Then we modify several files in order to adapt the Rails API application:
+app/controllers/application_controller.rb:
+ ActionController::API changed to ActionController::Base Added protection against XSRF attacks.  class ApplicationController &lt; ActionController::Base include ActionController::Serialization protect_from_forgery :with =&gt; :exception end config/application." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/minimal-working-setup-rails-5-api-activeadmin/" />
+<meta property="article:published_time" content="2017-05-15T12:37:03+00:00" />
+<meta property="article:modified_time" content="2017-05-15T12:37:03+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Minimal working setup Rails 5 API &#43; ActiveAdmin"/>
+<meta name="twitter:description" content="First of all add the ActiveAdmin and the Devise gems. Devise is needed because ActiveAdmin will use it as the authentication mechanism.
+Gemfile:
+gem &#39;devise&#39;, &#39;&gt; 4.x&#39; gem &#39;activeadmin&#39;, github: &#39;activeadmin&#39; We install the gems:
+bundle install Then we modify several files in order to adapt the Rails API application:
+app/controllers/application_controller.rb:
+ ActionController::API changed to ActionController::Base Added protection against XSRF attacks.  class ApplicationController &lt; ActionController::Base include ActionController::Serialization protect_from_forgery :with =&gt; :exception end config/application."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" /><link rel="stylesheet" type="text/css" href="/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="/">
+				<img src="wizard.png" alt="Esteban Sastre" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="/">Esteban Sastre</a></h1>
+	<div class="site-description"><p>Pretty much everything that crosses my mind, thoughts and ramblings</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fr0gs/" title="Github"><i data-feather="github"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">15</span>
+							<span class="rest">May 2017</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Minimal working setup Rails 5 API &#43; ActiveAdmin</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p>First of all add the <strong>ActiveAdmin</strong> and the <strong>Devise gems</strong>. Devise is needed because ActiveAdmin will use it as the authentication mechanism.</p>
+<p><em>Gemfile</em>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">gem <span style="color:#a31515">&#39;devise&#39;</span>, <span style="color:#a31515">&#39;&gt; 4.x&#39;</span>
+gem <span style="color:#a31515">&#39;activeadmin&#39;</span>, <span style="color:#a31515">github</span>: <span style="color:#a31515">&#39;activeadmin&#39;</span>
+</code></pre></div><p>We install the gems:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bundle install
+</code></pre></div><p>Then we modify several files in order to adapt the Rails API application:</p>
+<p><strong>app/controllers/application_controller.rb</strong>:</p>
+<ul>
+<li>ActionController::API changed to ActionController::Base</li>
+<li>Added protection against <a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery">XSRF</a> attacks.</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#00f">class</span> <span style="color:#2b91af">ApplicationController</span> &lt; ActionController::Base
+  <span style="color:#00f">include</span> ActionController::Serialization
+  
+  protect_from_forgery <span style="color:#a31515">:with</span> =&gt; <span style="color:#a31515">:exception</span>
+<span style="color:#00f">end</span>
+</code></pre></div><p><strong>config/application.rb</strong>:
+We need to change <strong>config.api_only</strong> to false in order to enable several middleware needed to make Devise work. Otherwise it will always redirect to login page by default.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#00f">module</span> YourApp
+  <span style="color:#00f">class</span> <span style="color:#2b91af">Application</span> &lt; Rails::Application
+    config.api_only = <span style="color:#00f">false</span>
+  <span style="color:#00f">end</span>
+<span style="color:#00f">end</span>
+</code></pre></div><p>Install the ActiveAdmin system in the application (this will create an AdminUser model):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">rails generate active_admin:install
+</code></pre></div><p>If you want to use an existing model as admin run:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">rails generate active_admin:install User
+</code></pre></div><p>Create the tables and seed the data:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">rails db:migrate
+rails db:seed
+</code></pre></div><p>This is the bare minimum that I needed to successfully have the admin page and log into the dashboard.</p>
+
+			</div>
+
+			<div class="tags">
+				
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'ink-demo';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+		Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-99848055-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Getting docker-compose path from cursor position - Esteban Sastre</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Getting docker-compose path from cursor position" />
+<meta property="og:description" content="Introduction The Stack Builder application as part of the Big Data Europe platform is a system that helps in the process of building docker-compose.yml files. You can drag &amp; drop existing docker-compose files from the project into a textarea to be shown and also search for other repositories in the big data europe github organization, composing a whole new system by taking useful pieces of systems and putting them together." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/getting-docker-compose-path-from-cursor-position/" />
+<meta property="article:published_time" content="2017-09-03T15:18:00+00:00" />
+<meta property="article:modified_time" content="2017-09-03T15:18:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Getting docker-compose path from cursor position"/>
+<meta name="twitter:description" content="Introduction The Stack Builder application as part of the Big Data Europe platform is a system that helps in the process of building docker-compose.yml files. You can drag &amp; drop existing docker-compose files from the project into a textarea to be shown and also search for other repositories in the big data europe github organization, composing a whole new system by taking useful pieces of systems and putting them together."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" /><link rel="stylesheet" type="text/css" href="/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="/">
+				<img src="wizard.png" alt="Esteban Sastre" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="/">Esteban Sastre</a></h1>
+	<div class="site-description"><p>Pretty much everything that crosses my mind, thoughts and ramblings</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fr0gs/" title="Github"><i data-feather="github"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">03</span>
+							<span class="rest">Sep 2017</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Getting docker-compose path from cursor position</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<h1 id="introduction">Introduction</h1>
+<p>The <a href="https://github.com/big-data-europe/app-stack-builder">Stack Builder</a> application as part of the <a href="https://www.big-data-europe.eu/">Big Data Europe</a> platform is a system that helps in the process of building <strong>docker-compose.yml</strong> files. You can drag &amp; drop existing docker-compose files from the project into a <em>textarea</em> to be shown and also search for other repositories in the big data europe github organization, composing a whole new system by taking useful pieces of systems and putting them together.</p>
+<p><img src="/images/stackbuilder1.png" alt="stackbuilder1"></p>
+<p>Additionally, it provides small hinting functionality for example by showing a dropdown menu with already existing containers to link them. The idea is to add more intelligence to this hinting process, by being able to know the context on where the user is situated while editing the docker-compose file, and therefore knowing what kind of information may be suitable for them.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">web:
+  image: nginx
+  volumes:
+    - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  command: [nginx-debug, <span style="color:#a31515">&#39;-g&#39;</span>, <span style="color:#a31515">&#39;daemon off;&#39;</span>]
+</code></pre></div><p>Say that the user has the cursor in the <code>- ./nginx.conf:/etc/nginx/nginx.conf:ro</code> line. If we know that the user is situated in the <code>web.volumes</code> path we can add hints into additional volume mount paths that are commonly used for <strong>nginx</strong> containers.</p>
+<p>The problem is, how do we know where in the docker-compose.yml file is the cursor placed?</p>
+<h1 id="implementation">Implementation</h1>
+<p>To see all the code just <a href="https://github.com/big-data-europe/ember-stack-builder-frontend">check the repository</a>, I will simplify those pieces that are not needed. The initial scenario is simple: the docker-compose file is loaded into a textarea and parsed into a yaml object:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;div&gt;
+  &lt;div class=<span style="color:#a31515">&#34;input-field&#34;</span>&gt;
+    {{textarea id=&#34;textarea-autocomplete&#34; value=value label=label}}
+    &lt;label id=<span style="color:#a31515">&#34;textarea-label-{{label}}&#34;</span> &gt;{{label}}&lt;/label&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">yamlObject: Ember.computed(<span style="color:#a31515">&#39;value&#39;</span>, <span style="color:#00f">function</span>() {
+  <span style="color:#00f">try</span> {
+    <span style="color:#00f">const</span> yaml = <span style="color:#00f">this</span>.yamlParser(<span style="color:#00f">this</span>.get(<span style="color:#a31515">&#39;value&#39;</span>));
+    <span style="color:#00f">this</span>.setProperties({
+      yamlErrorMessage: <span style="color:#a31515">&#39;&#39;</span>,
+      yamlError: <span style="color:#00f">false</span>
+    });
+    <span style="color:#00f">return</span> yaml;
+  }
+  <span style="color:#00f">catch</span> (err) {
+    <span style="color:#00f">this</span>.setProperties({
+      yamlErrorMessage: err,
+      yamlError: <span style="color:#00f">true</span>
+    });
+    <span style="color:#00f">return</span> <span style="color:#00f">null</span>;
+  }
+})
+</code></pre></div><p>This will return a javascript object with the parsed YAML. Now, every time the cursor moves in the <strong>textarea</strong> either by pressing arrow keys or writing into the textarea we want to know the path in the yaml object where it is placed, for example giving a point-separated path, (i.e: if the cursor is placed in the first link of the <em>identifier</em> service: <code>services.identifier.links.0</code>).</p>
+<p>The first thing we need is to have a way of getting the line where the cursor is placed (for example, <code>- identifier:identifier</code> inside a <code>links</code> object). Since the whole docker-compose.yml is stored as a string inside the textarea, a way of doing it is getting the &ldquo;context string&rdquo; starting from the cursor's position and adding characters both left and right until you find &ldquo;stop characters&rdquo;, involving those that represent a line break or a tabulation in the YAML file.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">getCursorYmlPath() {
+  <span style="color:#00f">const</span> text = <span style="color:#00f">this</span>.get(<span style="color:#a31515">&#39;value&#39;</span>);
+  <span style="color:#00f">const</span> cursorPosition = Ember.$(<span style="color:#a31515">&#39;#textarea-autocomplete&#39;</span>).prop(<span style="color:#a31515">&#34;selectionStart&#34;</span>);
+  <span style="color:#00f">const</span> stringLeft = <span style="color:#00f">this</span>.stringPad(<span style="color:#a31515">&#39;left&#39;</span>);
+  <span style="color:#00f">const</span> stringRight = <span style="color:#00f">this</span>.stringPad(<span style="color:#a31515">&#39;right&#39;</span>);
+  <span style="color:#00f">const</span> contextString = <span style="color:#a31515">`</span><span style="color:#a31515">${</span>stringLeft(text, cursorPosition).text.trim()<span style="color:#a31515">}</span><span style="color:#a31515">${</span>stringRight(text, cursorPosition).text.trim()<span style="color:#a31515">}</span><span style="color:#a31515">`</span>;
+}
+</code></pre></div><p>Function <strong>stringPad</strong> returns the padding characters of a string starting from the cursor index until it finds a stop character.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">stringPad(direction, write) {
+  <span style="color:#00f">return</span> <span style="color:#00f">function</span> (text, cursor) {
+    <span style="color:#00f">let</span> stopChars = [<span style="color:#a31515">&#39;\n&#39;</span>, <span style="color:#a31515">&#39;\t&#39;</span>];
+    <span style="color:#00f">let</span> i = cursor;
+    <span style="color:#00f">let</span> predicate = write ? () =&gt; stopChars.indexOf(text[i-1]) : () =&gt; stopChars.indexOf(text[i]);
+    <span style="color:#00f">while</span> (predicate() === -1 &amp;&amp; i &gt; 0 &amp;&amp; i &lt; text.length) {
+      <span style="color:#00f">if</span> (direction === <span style="color:#a31515">&#39;right&#39;</span>) {
+        i = i + 1;
+      }
+      <span style="color:#00f">else</span> <span style="color:#00f">if</span> (direction === <span style="color:#a31515">&#39;left&#39;</span>) {
+        i = i - 1;
+      }
+      <span style="color:#00f">else</span> {
+        <span style="color:#00f">break</span>;
+      }
+    }
+    <span style="color:#00f">if</span> (direction === <span style="color:#a31515">&#39;right&#39;</span>) {
+      <span style="color:#00f">return</span> {
+        text: text.slice(cursor, i),
+        index: i
+      };
+    }
+    <span style="color:#00f">else</span> <span style="color:#00f">if</span> (direction === <span style="color:#a31515">&#39;left&#39;</span>) {
+      <span style="color:#00f">return</span> {
+        text: text.slice(i, cursor),
+        index: i
+      };
+    }
+    <span style="color:#00f">else</span> {
+      <span style="color:#00f">return</span> { text: <span style="color:#a31515">&#34;&#34;</span>, index: -1 };
+    }
+  };
+}
+</code></pre></div><p>At the end, printing the contextString you get the whole line: <code>&quot;- dispatcher:dispatcher&quot;</code>.</p>
+<p>The next step is to know where in the docker-compose.yml you can find the contextString. Since you can find the previous mentioned line in several services inside a docker-compose, I create a list of object paths that have the context string as a match:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">Array.prototype.flatten = <span style="color:#00f">function</span>() {
+  <span style="color:#00f">let</span> arr = <span style="color:#00f">this</span>;
+  <span style="color:#00f">while</span> (arr.find(el =&gt; Array.isArray(el))) { arr = Array.prototype.concat(...arr); }
+  <span style="color:#00f">return</span> arr;
+};
+
+getCursorYmlPath() {
+  (...prev...)
+  <span style="color:#00f">const</span> pathMatches = <span style="color:#00f">this</span>.getYmlPathMatches(contextString, <span style="color:#00f">this</span>.get(<span style="color:#a31515">&#39;yamlObject&#39;</span>)).flatten();
+}
+
+
+getYmlPathMatches(contextString, yaml, currentPath) {
+<span style="color:#00f">if</span> (yaml &amp;&amp; yaml !== <span style="color:#00f">null</span>) {
+  <span style="color:#00f">var</span> currentPath = currentPath || <span style="color:#a31515">&#34;root&#34;</span>;
+
+  <span style="color:#00f">return</span> Object.keys(yaml).map((key) =&gt; {
+    <span style="color:#00f">if</span> (<span style="color:#00f">typeof</span> yaml[key] === <span style="color:#a31515">&#34;object&#34;</span> &amp;&amp; yaml[key] !== <span style="color:#00f">null</span>) {
+      <span style="color:#00f">if</span> (contextString.includes(key)) {
+        <span style="color:#00f">return</span> [<span style="color:#a31515">`</span><span style="color:#a31515">${</span>currentPath<span style="color:#a31515">}</span><span style="color:#a31515">.</span><span style="color:#a31515">${</span>key<span style="color:#a31515">}</span><span style="color:#a31515">`</span>].concat(<span style="color:#00f">this</span>.getYmlPathMatches(contextString, yaml[key], <span style="color:#a31515">`</span><span style="color:#a31515">${</span>currentPath<span style="color:#a31515">}</span><span style="color:#a31515">.</span><span style="color:#a31515">${</span>key<span style="color:#a31515">}</span><span style="color:#a31515">`</span>));
+      }          
+      <span style="color:#00f">else</span> {
+        <span style="color:#00f">return</span> <span style="color:#00f">this</span>.getYmlPathMatches(contextString, yaml[key], <span style="color:#a31515">`</span><span style="color:#a31515">${</span>currentPath<span style="color:#a31515">}</span><span style="color:#a31515">.</span><span style="color:#a31515">${</span>key<span style="color:#a31515">}</span><span style="color:#a31515">`</span>);
+      }
+    }
+    <span style="color:#00f">else</span> {
+      <span style="color:#008000">// Key is not of numeric type (so we are not inside an array)
+</span><span style="color:#008000"></span>      <span style="color:#00f">if</span> (isNaN(key)) {
+        <span style="color:#00f">if</span> (contextString.includes(key) || contextString.includes(yaml[key])) {
+          <span style="color:#00f">return</span> <span style="color:#a31515">`</span><span style="color:#a31515">${</span>currentPath<span style="color:#a31515">}</span><span style="color:#a31515">.</span><span style="color:#a31515">${</span>key<span style="color:#a31515">}</span><span style="color:#a31515">`</span>;
+        }
+        <span style="color:#00f">else</span> <span style="color:#00f">return</span> [];
+      }
+      <span style="color:#00f">else</span> {
+        <span style="color:#00f">if</span> (contextString.includes(yaml[key])) {
+          <span style="color:#00f">return</span> <span style="color:#a31515">`</span><span style="color:#a31515">${</span>currentPath<span style="color:#a31515">}</span><span style="color:#a31515">.</span><span style="color:#a31515">${</span>key<span style="color:#a31515">}</span><span style="color:#a31515">`</span>;
+        }
+        <span style="color:#00f">else</span> <span style="color:#00f">return</span> [];
+      }
+    }
+  });
+}
+<span style="color:#00f">else</span> <span style="color:#00f">return</span> [];
+}
+</code></pre></div><p>Using <strong>root</strong> as the root object path, the result is a list of object paths like this:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">[<span style="color:#a31515">&#34;root.services.identifier.links.0&#34;</span>, <span style="color:#a31515">&#34;root.services.dispatcher&#34;</span>]
+</code></pre></div><p>Lastly, I retrieve the index in the <strong>pathMatches</strong> array that correspond to the closest match to the cursor's position.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">getCursorYmlPath() {
+  (...prev...)
+  <span style="color:#00f">const</span> tramo = text.length / pathMatches.length;
+  <span style="color:#00f">const</span> probableIndex = Math.floor(cursorPosition / tramo);
+  <span style="color:#00f">return</span> pathMatches[probableIndex];
+}
+</code></pre></div><p>There may be edge cases that I have not taken into account, but so far it is working nicely.</p>
+<p>Have fun!</p>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/docker">docker</a></li>
+							
+							<li><a href="/tags/docker-compose">docker-compose</a></li>
+							
+							<li><a href="/tags/yaml">yaml</a></li>
+							
+							<li><a href="/tags/yml">yml</a></li>
+							
+							<li><a href="/tags/javascript">javascript</a></li>
+							
+							<li><a href="/tags/bde">bde</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'ink-demo';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+		Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-99848055-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

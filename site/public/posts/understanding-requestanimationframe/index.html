@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Understanding requestAnimationFrame - Esteban Sastre</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Understanding requestAnimationFrame" />
+<meta property="og:description" content="requestAnimationFrame is a basic construct when creating web based animations. This article aims to explain it in an approachable way." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/understanding-requestanimationframe/" />
+<meta property="article:published_time" content="2018-05-29T15:18:12+00:00" />
+<meta property="article:modified_time" content="2018-05-29T15:18:12+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Understanding requestAnimationFrame"/>
+<meta name="twitter:description" content="requestAnimationFrame is a basic construct when creating web based animations. This article aims to explain it in an approachable way."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" /><link rel="stylesheet" type="text/css" href="/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="/">
+				<img src="wizard.png" alt="Esteban Sastre" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="/">Esteban Sastre</a></h1>
+	<div class="site-description"><p>Pretty much everything that crosses my mind, thoughts and ramblings</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fr0gs/" title="Github"><i data-feather="github"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">29</span>
+							<span class="rest">May 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Understanding requestAnimationFrame</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<h1 id="introduction">Introduction</h1>
+<p>I never quite got what was the <em>requestAnimationFrame</em> function I kept seeing while reading web articles since I never really dove deep in graphics in the browser.</p>
+<p>Still, I think it will be a good exercise and reminder for the future to write a small article to structure and understand the basic concept and usage of the function.</p>
+<h1 id="overview">Overview</h1>
+<p>For the human brain to be fooled into thinking that a sequence of images flow into movement (animate), you need to provide at least 24 images (frames) per second, otherwise you'll start to notice cuts. Most computer screens have an &ldquo;image refresh&rdquo; (or frames/per/second) rate of 60fps, meaning in turn that you will see 60 images in the course of one second.</p>
+<p>If we divide the slice of time for perception (a second) into the refresh rate of the screen it gives us the time slot available to perform an animation (both calculating and painting) for a single frame. We use <em>miliseconds</em> since <strong>setTimeout</strong>, <strong>setInterval</strong> use them to measure time.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">1000ms / 60 fps = 16.67ms/frame
+</code></pre></div><p>The smoothness of an animation depends on whether each frame of the animation is executed within that <em>16.67ms</em> time frame.</p>
+<p>An example animation <a href="https://hacks.mozilla.org/2011/08/animating-with-javascript-from-setinterval-to-requestanimationframe/">taken from here</a> but slightly modified includes a green square being moved horizontally from left to right using the <strong>setInterval</strong> function (<a href="https://codepen.io/anon/pen/PaYJrB">Demo here</a>).</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-htm" data-lang="htm">&lt;div id=<span style="color:#a31515">&#34;animated&#34;</span>&gt;&lt;div&gt;
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">#animated {
+    <span style="color:#00f">position</span>: <span style="color:#00f">absolute</span>;
+    <span style="color:#00f">width</span>: 20<span style="color:#2b91af">px</span>;
+    <span style="color:#00f">height</span>: 20<span style="color:#2b91af">px</span>;
+    <span style="color:#00f">background</span>: <span style="color:#00f">green</span>;
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">let</span> elem = document.getElementById(<span style="color:#a31515">&#34;animated&#34;</span>),
+  left = 0,
+  timer;
+
+<span style="color:#00f">function</span> animate() {
+  elem.style.left = ( left += 10 ) + <span style="color:#a31515">&#34;px&#34;</span>;
+  
+  <span style="color:#00f">if</span> ( left == 1000 ) {
+    clearInterval(timer);
+  }
+}
+
+timer = setInterval(<span style="color:#00f">function</span>() {
+  animate();
+}, 17);
+</code></pre></div><p>As seen, I've rounded the 16.67ms to 17ms, and you can see the continuity and somewhat fluidity of the animation. What will happen if we change the interval timer to say, 100ms, is that animation will feel choppy and stumbling. Additionally, there is <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout#Reasons_for_delays_longer_than_specified">no real guarantee</a> that the <strong>setInterval</strong> function will comply with the passed timeout.</p>
+<h1 id="what-is-requestanimationframe">What is requestAnimationFrame()</h1>
+<p>It is a javascript API function that allows the user to perform animation-based loops more efficiently than the usual alternatives: <strong>for-loop</strong> or <strong>setTimeout</strong> &amp; <strong>setInterval</strong> functions.</p>
+<p>Intensive graphics animations run with <strong>requestAnimationFrame</strong> API will get some preferent treatment and be optimized to create a smoother feel in the browser, compared to the previously mentioned counterparts:</p>
+<ul>
+<li>Animations will only run when visible: the browser will drastically throttle animation if it isn't executed in the active tab, hence saving up a ton of cpu cycles.</li>
+<li>Browser with <strong>setTimeout</strong> will update the screen arbitrarily, trying to match the animation's redraw with the whole screen repaint, losing cpu cycles in the process.</li>
+<li>It does not require an update interval, hence adapting to the refresh rate of the computer. Animations are refreshed <em>when possible</em>, not <em>when told</em>.</li>
+<li>It will group all the animations into a single repaint, saving a lot of cpu cycles too.</li>
+<li>Battery friendly: as a consequence of the previous reasons.</li>
+</ul>
+<p>Animations can be of any kind, either by manipulating the DOM, using WebGL, using CSS transitions, or using the <em>canvas</em> HTML element.</p>
+<h1 id="how-does-it-work">How does it work</h1>
+<p>Use of <a href="https://developer.mozilla.org/es/docs/Web/API/Window/requestAnimationFrame">the <strong>requestAnimationFrame</strong> API</a> is very simple:</p>
+<ul>
+<li>It accepts a callback function that will be called before triggering a repaint. The callback will receive the timestamp when the API was called.</li>
+<li>It returns an integer representing the <em>frame id</em> that can be passed to the <strong>cancelAnimationFrame</strong> API to stop it from being painted.</li>
+</ul>
+<p>The former example transformed to use <strong>requestAnimationFrame</strong> can be <a href="https://codepen.io/anon/pen/XYWbLJ">found in this pen</a>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">let</span> elem = document.getElementById(<span style="color:#a31515">&#34;animated&#34;</span>);
+
+<span style="color:#00f">function</span> animate(left) {
+  <span style="color:#00f">return</span> requestAnimationFrame((timestamp) =&gt; {
+    elem.style.left = (left + 10) + <span style="color:#a31515">&#34;px&#34;</span>;
+    
+    <span style="color:#00f">if</span> (left &lt; 1000) 
+      <span style="color:#00f">return</span> animate(left+10);
+  });
+}
+
+animate(0);
+</code></pre></div><p>Instead of using a pure function it can also be done by tracking the <em>left</em> variable externally, as seen <a href="https://codepen.io/anon/pen/Yvzrqy">in this pen</a>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">let</span> elem = document.getElementById(<span style="color:#a31515">&#34;animated&#34;</span>),
+    left = 0;
+
+<span style="color:#00f">function</span> animate(timestamp) {
+  elem.style.left = (left += 10) + <span style="color:#a31515">&#34;px&#34;</span>;
+    
+  <span style="color:#00f">if</span> (left &lt; 1000)
+    <span style="color:#00f">return</span> requestAnimationFrame(animate);
+}
+
+requestAnimationFrame(animate);
+</code></pre></div><h2 id="cancelling-requestanimationframe-execution">Cancelling requestAnimationFrame() execution</h2>
+<p>As stated previously, animations can be cancelled by making a call to the <strong>cancelAnimationFrame</strong> API and passing the <em>frame  id</em> returned by <strong>requestAnimationFrame</strong>. <a href="https://codepen.io/anon/pen/Yvzrqy">Check this pen</a> to see the animation cancelled after one second. Then, comment out the <code>setTimeout</code> line and see how the green square moves way forward.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">let</span> elem = document.getElementById(<span style="color:#a31515">&#34;animated&#34;</span>),
+    left = 0,
+    frameId;
+
+<span style="color:#00f">function</span> animate(timestamp) {
+  elem.style.left = (left += 10) + <span style="color:#a31515">&#34;px&#34;</span>;
+    
+  <span style="color:#00f">if</span> (left &lt; 1000)
+    frameId = requestAnimationFrame(animate);
+}
+
+frameId = requestAnimationFrame(animate);
+
+setTimeout(() =&gt; cancelAnimationFrame(frameId), 1000);
+</code></pre></div><h2 id="slowing-down-the-animation">Slowing down the animation</h2>
+<p>The frame rate of an animation using <strong>requestAnimationFrame</strong> can also be adjusted by throttling the call to the API inside a <strong>setTimeout</strong> call and dividing a second between the frame rate desired, slowering it down, like shown <a href="https://codepen.io/anon/pen/GGROvG">in this pen</a>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">let</span> elem = document.getElementById(<span style="color:#a31515">&#34;animated&#34;</span>),
+    left = 0,
+    fps = 10;
+
+<span style="color:#00f">function</span> animate(timestamp) {
+  setTimeout(() =&gt; {
+    elem.style.left = (left += 10) + <span style="color:#a31515">&#34;px&#34;</span>;
+    
+    <span style="color:#00f">if</span> (left &lt; 1000)
+      requestAnimationFrame(animate);
+  }, 1000/fps);
+}
+
+requestAnimationFrame(animate);
+</code></pre></div><p>So, that is pretty much it. <strong>requestAnimationFrame</strong> is a basic construct used in modern javascript frameworks and libraries such as React, Vue, Preact, Phaser, Pixi, etc..</p>
+<p>Have fun!</p>
+<h1 id="references">References</h1>
+<ol>
+<li><a href="https://www.nczonline.net/blog/2011/05/03/better-javascript-animations-with-requestanimationframe/">https://www.nczonline.net/blog/2011/05/03/better-javascript-animations-with-requestanimationframe/</a></li>
+<li><a href="https://dev.opera.com/articles/better-performance-with-requestanimationframe/">https://dev.opera.com/articles/better-performance-with-requestanimationframe/</a></li>
+<li><a href="http://blog.teamtreehouse.com/efficient-animations-with-requestanimationframe">http://blog.teamtreehouse.com/efficient-animations-with-requestanimationframe</a></li>
+<li><a href="https://www.html5rocks.com/en/tutorials/speed/rendering/">https://www.html5rocks.com/en/tutorials/speed/rendering/</a></li>
+<li><a href="https://hacks.mozilla.org/2011/08/animating-with-javascript-from-setinterval-to-requestanimationframe/">https://hacks.mozilla.org/2011/08/animating-with-javascript-from-setinterval-to-requestanimationframe/</a></li>
+<li><a href="http://www.javascriptkit.com/javatutors/requestanimationframe.shtml">http://www.javascriptkit.com/javatutors/requestanimationframe.shtml</a></li>
+<li><a href="http://creativejs.com/resources/requestanimationframe/index.html">http://creativejs.com/resources/requestanimationframe/index.html</a></li>
+</ol>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/javascript">javascript</a></li>
+							
+							<li><a href="/tags/web">web</a></li>
+							
+							<li><a href="/tags/learning">learning</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'ink-demo';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+		Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-99848055-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>
