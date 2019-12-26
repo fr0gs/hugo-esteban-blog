@@ -2,7 +2,7 @@
 author = "Esteban"
 categories = ["Getting Started"]
 date = 2017-03-18T14:18:52Z
-description = ""
+description = "Why did I move my blog from Wordpress to Ghost?"
 draft = false
 slug = "welcome-to-ghost"
 tags = ["Getting Started"]

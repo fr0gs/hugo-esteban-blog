@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 date = 2017-09-01T12:44:15Z
-description = ""
+description = "Well, I added Disqus comments in the blog."
 draft = false
 slug = "i-have-added-disqus-comments-to-the-blog"
 title = "I have added Disqus comments to the blog"

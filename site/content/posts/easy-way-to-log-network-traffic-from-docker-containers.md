@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 date = 2017-06-01T08:07:56Z
-description = ""
+description = "Developed a small script to dump network traffic from docker containers in a pcap file for further analysis."
 draft = false
 slug = "easy-way-to-log-network-traffic-from-docker-containers"
 title = "Easy way to log network traffic from docker containers"

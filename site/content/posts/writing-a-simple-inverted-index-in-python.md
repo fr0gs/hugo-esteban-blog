@@ -2,7 +2,7 @@
 author = "Esteban"
 categories = ["python", "learning"]
 date = 2018-10-22T12:47:56Z
-description = ""
+description = "What is this Inverted Index technique that ElasticSearch and other text search engines seem to use? I implement a very simple version of it for fun and learning."
 draft = false
 image = "/images/2018/10/Python-logo-notext.svg"
 slug = "writing-a-simple-inverted-index-in-python"

@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 date = 2018-01-09T20:10:14Z
-description = ""
+description = "A cursory review of year 2017, what has been accomplished and the upcoming resolutions."
 draft = false
 slug = "year-2017-review-and-resolutions"
 title = "Year 2017 review and resolutions"

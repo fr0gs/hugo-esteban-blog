@@ -2,7 +2,7 @@
 author = "Esteban"
 categories = ["docker", "docker-compose", "yaml", "yml", "javascript", "bde"]
 date = 2017-09-03T15:18:00Z
-description = ""
+description = "A piece of JS code to get the position of the cursor within a textarea."
 draft = false
 image = "/images/2017/09/yaml.png"
 slug = "getting-docker-compose-path-from-cursor-position"

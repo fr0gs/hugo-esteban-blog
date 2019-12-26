@@ -2,7 +2,7 @@
 author = "Esteban"
 categories = ["pgp", "privacy"]
 date = 2018-05-09T20:05:05Z
-description = ""
+description = "The basic introduction to PGP nobody asked me to write."
 draft = false
 image = "/images/2018/05/pgp-stock.jpg"
 slug = "a-primer-on-pretty-good-privacy"

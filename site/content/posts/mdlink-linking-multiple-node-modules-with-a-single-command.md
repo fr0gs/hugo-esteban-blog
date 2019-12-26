@@ -2,7 +2,7 @@
 author = "Esteban"
 categories = ["ember", "node", "nodejs", "javascript"]
 date = 2017-12-20T18:59:53Z
-description = ""
+description = "I wrote a tool to 'npm link' multiple node modules for development within a single project."
 draft = false
 image = "/images/2017/12/node_js.png"
 slug = "mdlink-linking-multiple-node-modules-with-a-single-command"

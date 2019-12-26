@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 date = 2018-08-03T06:50:06Z
-description = ""
+description = "Again your personal stuff Esteban? I know, let me indulge in writing this journal to remember in the future the silly things of the past."
 draft = false
 slug = "sabbatical-five-months-update"
 title = "Sabbatical five months update"

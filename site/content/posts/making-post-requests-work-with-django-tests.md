@@ -2,7 +2,7 @@
 author = "Esteban"
 categories = ["python", "django"]
 date = 2019-02-10T18:03:35Z
-description = ""
+description = "Making POST request work with Django testing framework"
 draft = false
 image = "/images/2019/02/Django_logo.png"
 slug = "making-post-requests-work-with-django-tests"

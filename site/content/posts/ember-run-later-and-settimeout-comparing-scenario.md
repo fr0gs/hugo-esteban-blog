@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 date = 2017-05-12T13:14:22Z
-description = ""
+description = "Comparing both Ember.run.later and setTimeout native function because they both seem to have the same effect."
 draft = false
 slug = "ember-run-later-and-settimeout-comparing-scenario"
 title = "Ember.run.later and setTimeout comparing scenario."

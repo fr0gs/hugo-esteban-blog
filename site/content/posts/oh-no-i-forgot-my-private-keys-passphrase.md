@@ -2,7 +2,7 @@
 author = "Esteban"
 categories = ["learning", "pgp", "privacy"]
 date = 2019-04-14T19:12:43Z
-description = ""
+description = "Describing the situation I've come accross some many times I had to write about it. Losing my PGP keys again..."
 draft = false
 image = "/images/2019/04/pgp.jpg"
 slug = "oh-no-i-forgot-my-private-keys-passphrase"

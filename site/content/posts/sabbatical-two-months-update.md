@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 date = 2018-04-30T18:35:23Z
-description = ""
+description = "An update on what I've been wasting my time into while enjoying my 'gap yah' (more like eight month-is)"
 draft = false
 slug = "sabbatical-two-months-update"
 title = "Sabbatical two months update"

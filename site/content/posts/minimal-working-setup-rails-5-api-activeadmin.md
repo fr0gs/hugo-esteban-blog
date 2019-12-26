@@ -1,7 +1,7 @@
 +++
 author = "Esteban"
 date = 2017-05-15T12:37:03Z
-description = ""
+description = "Minimal working setup of the Rails 5 API and the ActiveAdmin library."
 draft = false
 slug = "minimal-working-setup-rails-5-api-activeadmin"
 title = "Minimal working setup Rails 5 API + ActiveAdmin"
