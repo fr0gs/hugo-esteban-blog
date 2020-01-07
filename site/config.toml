@@ -60,14 +60,14 @@ url = "/tags"
 weight = 4
 
 [[params.social]]
+name = "Linkedin"
+icon = "linkedin"
+url = "https://www.linkedin.com/in/estebansastre/"
+
+[[params.social]]
 name = "Github"
 icon = "github"
 url = "https://github.com/fr0gs/"
-
-[[params.social]]
-name = "RSS"
-icon = "rss"
-url = "/index.xml"
 
 [taxonomies]
    tag = "tags"
