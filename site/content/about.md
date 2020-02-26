@@ -10,7 +10,7 @@ title = "About Me"
 
 +++
 
-![portada](/images/myself.jpg)
+![portada](/images/myself_beer_shop.jpg)
 
 Hello, I'm Esteban! I am a **Fullstack Developer** especially interested in *frontend development* and the *Web* in pretty much all it's forms.
 
@@ -68,7 +68,7 @@ If you are:
 * An **individual** with a project idea in mind and would like to quickly implement a prototype to release.
 
 
-Then you should reach out to me and **hire me!** ;)
+Then you should reach out to me and **hire me!**, throw me an email to: <esteban.s.f0@gmail.com>
 
 <hr>
 
