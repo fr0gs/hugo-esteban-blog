@@ -6,7 +6,7 @@ date = 2020-02-08T18:18:04+01:00
 description = "Reflections on Freedom when thinking about an old high school friend."
 draft = false
 slug = "on-freedom"
-tags = ["freedom", "reflextions"]
+tags = ["freedom", "reflections"]
 
 +++
 
