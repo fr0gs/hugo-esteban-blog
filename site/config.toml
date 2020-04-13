@@ -23,7 +23,7 @@ disqusShortname = "ink-demo"
 
 # Populate .Site.Params variable to use in templates
 [params]
-	subtitle = "Pretty much everything that crosses my mind, thoughts and ramblings"
+	subtitle = "There are no fixed rules that work in every situation"
 
 	# Optional 64x64 avatar image.
 	avatar = "/wizard.png"

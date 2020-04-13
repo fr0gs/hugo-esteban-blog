@@ -15,6 +15,9 @@ title = "About Me"
 Hello, I'm Esteban! I am a **Fullstack Developer** especially interested in *frontend development* and the *Web* in pretty much all it's forms.
 
 
+This is my linkmoji's url: [http://🎩🎤🐅🏈🗻🐈👑🦂.🍕💩.ws](http://🎩🎤🐅🏈🗻🐈👑🦂.🍕💩.ws)
+
+
 <div style="display:inline-block">
   <img src="/content/images/2017/05/rsz_portada.png" alt="Portada"/>
 </div>
